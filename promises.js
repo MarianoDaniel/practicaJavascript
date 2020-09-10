@@ -33,9 +33,11 @@ for (let i = 0; i < 10; i++) {
 }
 misPromesas.forEach(promesa =>
     promesa
-        .then(respuesta => console.log(respuesta))
-        .catch(razon => console.log(razon))
-);
+        .then(
+        respuesta => console.log(respuesta),
+        razon => console.log(razon))
+)
+        
 
 /* miPromesa.then(
     respuesta => console.log(respuesta),
