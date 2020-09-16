@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table,th,td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <h1>AJAX</h1>
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre">
     <button id="boton">Mandar datos usuario</button>
-    <ul id="lista-usuarios"></ul>
+    <table>
+        <thead>
+            <th>Nombre</th>
+        </thead>
+        <tbody id="body-usuarios"></tbody>
+    </table>
+    
     <script src="ejemplo-fetch.js"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@ peticion.addEventListener("load", reqListener);
 function enviarDatos() {
   peticion.open("POST", "http://bootcamp-dia-3.camilomontoyau.now.sh/usuarios", true);
   peticion.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  peticion.send("nombre=LUNES24");
+  peticion.send("nombre=LUNES50");
   setTimeout(refrescar, 3000);
 }
 
