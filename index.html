@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        table,th,td {
+        table, th, td {
             border: 1px solid black;
+        }
+        button.eliminar {
+            background-color: rgb(204, 34, 34);
+            padding: 5px;
+            border-radius: 5px;
+            color: wheat;
         }
     </style>
 </head>
+
 <body>
     <h1>AJAX</h1>
-    <label for="nombre">Nombre</label>
-    <input type="text" id="nombre">
+    <div>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre">
+    </div>
+    <div>
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido">
+    </div>
+    <div>
+        <label for="pais">Pais</label>
+        <input type="text" id="pais">
+    </div>
+
     <button id="boton">Mandar datos usuario</button>
     <table>
         <thead>
             <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Pais</th>
+            <th>Acciones</th>
         </thead>
         <tbody id="body-usuarios"></tbody>
     </table>
-    
+
     <script src="ejemplo-fetch.js"></script>
 </body>
+
 </html>
