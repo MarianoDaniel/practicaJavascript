@@ -4,8 +4,12 @@ const boton = document.getElementById('boton');
 const nombre = document.getElementById('nombre');
 const apellido = document.getElementById('apellido');
 const pais = document.getElementById('pais');
+const indice = document.getElementById('indice');
+
 let usuarios = [];
 let botonesEliminar = null;
+let botonesEditar = null;
+
 
 function render() {
 
@@ -14,12 +18,17 @@ function render() {
         <td>${usuario.nombre ? usuario.nombre : 'vacio'} </td>
         <td>${usuario.apellido ? usuario.apellido : 'vacio'} </td>
         <td>${usuario.pais ? usuario.pais : 'vacio'}</td>
+        <td><button class="editar" data-indice=${indice}>Editar</button></td>
         <td><button class="eliminar" data-indice=${indice}>Eliminar</button></td>
         </tr>`)
         .join("");
     console.log(usuariosRender);
     listaUsuarios.innerHTML = usuariosRender;
     botonesEliminar = document.getElementsByClassName('eliminar');
+    botonesEditar = document.getElementsByClassName('editar');
+    Array.from(botonesEditar).forEach(botonEditar => {
+        botonEditar.onclick = editarUnUsuario;
+    });
     Array.from(botonesEliminar).forEach(botonEliminar => {
         botonEliminar.onclick = eliminarUnUsuario;
     });
@@ -35,8 +44,6 @@ function enviarDatos() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-
-
         },
         body: JSON.stringify(datos),
     })
@@ -62,6 +69,22 @@ function eliminarUnUsuario(e) {
         });
 
 
+}
+
+function editarUnUsuario(e) {
+    e.preventDefault();
+    console.log('editarUnUsuario', e)
+    if (e.target.dataset.indice) {
+        const usuario = usuarios[e.target.dataset.indice];
+        nombre.value = usuario.nombre ? usuario.nombre : '';
+        apellido.value = usuario.apellido ? usuario.apellido : '';
+        pais.value = usuario.pais ? usuario.pais : '';
+        indice.value = e.target.dataset.indice;
+        console.log('usuario', usuario);
+        boton.innerText = 'Editar';
+    } else {
+        boton.innerText = 'Crear';
+    }
 }
 
 

@@ -15,11 +15,18 @@
             border-radius: 5px;
             color: wheat;
         }
+        button.editar {
+            background-color: rgb(14, 49, 165);
+            padding: 5px;
+            border-radius: 5px;
+            color: wheat;
+        }
     </style>
 </head>
 
 <body>
     <h1>AJAX</h1>
+    <input type="hidden" name="indice" id="indice">
     <div>
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre">
@@ -33,13 +40,14 @@
         <input type="text" id="pais">
     </div>
 
-    <button id="boton">Mandar datos usuario</button>
+    <button id="boton">Crear</button>
     <table>
         <thead>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Pais</th>
-            <th>Acciones</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
         </thead>
         <tbody id="body-usuarios"></tbody>
     </table>
