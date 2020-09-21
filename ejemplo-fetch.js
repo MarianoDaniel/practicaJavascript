@@ -5,6 +5,7 @@ const nombre = document.getElementById('nombre');
 const apellido = document.getElementById('apellido');
 const pais = document.getElementById('pais');
 const indice = document.getElementById('indice');
+const limpiar = document.getElementById('limpiar');
 
 let usuarios = [];
 let botonesEliminar = null;
@@ -18,6 +19,7 @@ function render() {
         <td>${usuario.nombre ? usuario.nombre : 'vacio'} </td>
         <td>${usuario.apellido ? usuario.apellido : 'vacio'} </td>
         <td>${usuario.pais ? usuario.pais : 'vacio'}</td>
+        <td><a class="ver" href="/index2.html?usuario=${indice}">Ver</a></td>
         <td><button class="editar" data-indice=${indice}>Editar</button></td>
         <td><button class="eliminar" data-indice=${indice}>Eliminar</button></td>
         </tr>`)
@@ -34,14 +36,28 @@ function render() {
     });
 }
 
-function enviarDatos() {
+function enviarDatos(e) {
+    let accion = e.target.innerHTML;
     const datos = {
         nombre: nombre.value,
         apellido: apellido.value,
         pais: pais.value
     };
-    fetch('https://bootcamp-dia-3.camilomontoyau.now.sh/usuarios', {
-        method: 'POST',
+    let url = null;
+    let method = null;
+    if (accion === 'Crear') {
+        url = 'https://bootcamp-dia-3.camilomontoyau.now.sh/usuarios';
+        method = 'POST';
+    } else if (accion === 'Editar') {
+        if (indice.value) {
+            url = `https://bootcamp-dia-3.camilomontoyau.now.sh/usuarios/${indice.value}`;
+            method = 'PUT';
+        }
+    } else {
+        return;
+    }
+    fetch(url, {
+        method,
         headers: {
             'Content-Type': 'application/json',
         },
@@ -51,10 +67,11 @@ function enviarDatos() {
         .then(jsonResponse => {
             console.log('jsonResponse', jsonResponse);
             refrescar();
-        });
+            clear()
+        }).catch(razon => clear());
 
 
-}
+}   
 
 function eliminarUnUsuario(e) {
     e.preventDefault();
@@ -89,7 +106,7 @@ function editarUnUsuario(e) {
 
 
 function refrescar() {
-    fetch('http://bootcamp-dia-3.camilomontoyau.now.sh/usuarios')
+    fetch('https://bootcamp-dia-3.camilomontoyau.now.sh/usuarios')
         .then(response => response.json())
         .then(respuestaUsuarios => {
             console.log('respuestaUsuarios', respuestaUsuarios);
@@ -98,5 +115,13 @@ function refrescar() {
         })
 }
 //CRUD: Create Read Update Delete
+
+function clear() {
+    boton.innerText = 'Crear';
+    nombre.value = '';
+    apellido.value = '';
+    pais.value = '';
+}
 refrescar();
 boton.onclick = enviarDatos;
+limpiar.onclick = clear;
