@@ -1,4 +1,4 @@
-let usuarios = [];
+let usuarios = '';
 const listarUsuario = document.getElementById('body-usuario');
 function tomarDatosUrl() {
     return location.search.replace('?', '').split('=')[1];
@@ -8,8 +8,8 @@ function obtenerUsuario() {
         .then(response => response.json())
         .then(respuestaUsuarios => {
             console.log('respuestaUsuarios', respuestaUsuarios);
-            usuarios = respuestaUsuarios;
-            //render();
+            usuario = respuestaUsuarios;
+            render();
         })
 }
 

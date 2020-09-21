@@ -99,7 +99,7 @@ function editarUnUsuario(e) {
         indice.value = e.target.dataset.indice;
         console.log('usuario', usuario);
         boton.innerText = 'Editar';
-    } else {
+    } else {    
         boton.innerText = 'Crear';
     }
 }
@@ -118,6 +118,7 @@ function refrescar() {
 
 function clear() {
     boton.innerText = 'Crear';
+    indice.value = '';
     nombre.value = '';
     apellido.value = '';
     pais.value = '';
